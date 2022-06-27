@@ -1,35 +1,38 @@
-//dependency
+/**?
+ * 
+ * Title:Uptime Monitor 
+ * Description: Restful API
+ */
 const http = require('http');
-const { parse } = require('path');
-const url = require('url');
+const { listenerCount } = require('process');
 
-//app-object
+/// app object
 
-const  app= {};
+const app= {};
 
-//configuration
-app.config ={
-    port: 3000
+// configuration
+
+app.config= {
+    port:3000
 };
 
+
 //create server
-app.createServer = () =>{
-    const server =http.createServer(app.handleReqRes);
-    server.listen(app.config.port,()=>{
-        console.log(`listening to ${app.config.port}`);
+
+app.createServer = () => {
+    const server = http.createServer(app.handleReqRes);
+    server.listen(app.config.port, () => {
+        console.log(`listening to  ${app.config.port} `);
     });
 }
 
-//handle request response
+// handle req-res
 
-app.handleReqRes=(req,res) =>{
-    // req handling
-    //get the url and parse
-    const parsedUrl = url.parse(req.url, true);
-    const path =parsedUrl.pathname;
-    const trimmedPath =path.replace(/^\/+|\/+$/g, '');
-    console.log(trimmedPath);
-    res.end('Hello Pog');
+app.handleReqRes = (req, res) =>{
+    //response handle
+    res.end('Hello World');
 };
+
+//start the server
 
 app.createServer();
